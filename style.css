@@ -153,27 +153,6 @@ nav li {
   display: block;
 }
 
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 40px;
-  background: linear-gradient(135deg, #eef2ff, #fdf2f8);
-}
-
-.hero-text {
-  max-width: 400px;
-}
-
-.hero-text h1 {
-  font-size: 32px;
-  color: #1e293b;
-}
-
-.hero-text p {
-  margin: 15px 0;
-  color: #475569;
-}
 
 .btn {
   background: #4f46e5;
@@ -202,4 +181,30 @@ nav li {
 .produto h3 {
   font-size: 16px;
   margin-top: 10px;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.header {
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+
+.hero {
+  display: block;
+  width: 100%;
+  padding: 20px 40px;
+}
+
+.hero img:hover {
+  transform: scale(1.01);
+}
+
+.hero img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center right;
 }
