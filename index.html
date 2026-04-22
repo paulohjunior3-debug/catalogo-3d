@@ -2,20 +2,48 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Catálogo 3D</title>
+  <title>Loja 3D</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>Meu Catálogo 3D</h1>
+<header class="header">
+  <div class="logo">Realidade 3D</div>
 
-  <div class="grid">
-    <div class="produto">
-      <img src="produto1.jpg" alt="">
-      <h2>Produto 1</h2>
-      <a href="https://wa.me/SEUNUMERO" target="_blank">Comprar</a>
-    </div>
+  <nav class="menu">
+    <ul>
+      <li class="dropdown">
+        Categorias
+        <ul class="dropdown-menu" id="categorias"></ul>
+      </li>
+      <li>Sobre</li>
+      <li>
+        <a href="https://wa.me/5534996896636" target="_blank">
+          WhatsApp
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <input type="text" id="search" placeholder="Buscar produtos...">
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <h1>Aprender brincando é ainda melhor</h1>
+    <p>Produtos 3D personalizados e educativos para crianças</p>
+    <a href="#" class="btn">Ver mais vendidos</a>
   </div>
 
+  <div class="hero-img">
+    <img src="img/banner.jpg">
+  </div>
+</section>
+
+<section class="produtos">
+  <div class="grid" id="grid"></div>
+</section>
+
+<script src="script.js"></script>
 </body>
 </html>
