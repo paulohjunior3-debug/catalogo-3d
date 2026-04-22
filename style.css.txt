@@ -1,0 +1,15 @@
+body {
+  font-family: Arial;
+  text-align: center;
+}
+
+.grid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.produto {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
