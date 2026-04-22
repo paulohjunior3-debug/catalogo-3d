@@ -201,10 +201,3 @@ nav li {
 .hero img:hover {
   transform: scale(1.01);
 }
-
-.hero img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  object-position: center right;
-}
