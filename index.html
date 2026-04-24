@@ -13,7 +13,7 @@
     <header>
         <nav class="main-nav">
             <div class="logo-container">
-                <img src="logo_r3d.png" alt="Realidade 3D - Logo Completo" class="logo-image">
+                <img src="C:\Users\PH\Documents\catalogo-3d\img\logo.png" alt="Realidade 3D - Logo Completo" class="logo-image">
             </div>
             <ul class="nav-links">
                 <li class="active" onclick="filtrar('todos')">Início</li>
@@ -38,6 +38,36 @@
             <div class="loading">Carregando produtos...</div>
         </div>
     </main>
+
+    <section id="detalhes-produto" class="container" style="display: none;">
+      <button onclick="voltarParaVitrine()" class="btn-voltar">
+          <i class="fas fa-arrow-left"></i> Voltar para a vitrine
+      </button>
+      
+      <div class="detalhes-grid">
+          <div class="galeria-detalhes">
+              <img id="foto-principal" src="" alt="Produto">
+              <div class="miniaturas" id="miniaturas">
+                  </div>
+          </div>
+          
+          <div class="info-detalhes">
+              <h1 id="detalhe-nome"></h1>
+              <span class="card-cat" id="detalhe-cat"></span>
+              <p class="preco-detalhe">R$ <span id="detalhe-preco"></span></p>
+              <p id="detalhe-desc"></p>
+              
+              <div class="entrega-info">
+                  <p><i class="fas fa-truck"></i> Enviamos para todo o Brasil</p>
+                  <p><i class="fas fa-box"></i> Produzido em PLA de alta qualidade (Bambu Lab)</p>
+              </div>
+
+              <a id="detalhe-link-wpp" href="#" target="_blank" class="btn-wpp">
+                  <i class="fab fa-whatsapp"></i> Encomendar agora
+              </a>
+          </div>
+      </div>
+    </section>
 
     <footer>
         <div class="footer-content container">

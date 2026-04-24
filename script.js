@@ -1,71 +1,32 @@
 /* script.js */
 
-// BANCO DE DADOS DOS PRODUTOS
-// Para adicionar novos produtos, basta duplicar um bloco {} e editar os dados.
+// 1. BANCO DE DADOS DOS PRODUTOS
 const produtos = [
-    // --- CATEGORIA: EDUCATIVO ---
     {
         id: 1,
-        nome: "Quebra-Cabeça Alfabeto Dinossauro",
-        categoria: "educativo",
-        descricao: "Placa interativa para aprendizado de letras e cores.",
-        imagem: "https://via.placeholder.com/300?text=Quebra-Cabeça+Dino", // Troque pela foto real
-        linkWpp: "https://wa.me/5534996896636?text=Olá,+tenho+interesse+no+Quebra-Cabeça+Dino"
+        nome: "Jinx & Vi - League of Legends Arcane",
+        categoria: "anime",
+        preco: "119,90",
+        descricao: "Peça exclusiva desenvolvida por meio de impressão 3D em filamento PLA...\n\nO modelo retrata as personagens Jinx e Vi...\n\nPor se tratar de um produto artesanal...\n\nObservações:\n\nProduto entregue conforme exibido nas imagens\nNão acompanha pintura (acabamento lixado e envernizado)\nIndicado para decoração e coleção",
+        imagem: "C:\Users\PH\Documents\catalogo-3d\img\Animes\VieJinx\vi.png", // Quando tiver a foto real, mude aqui (ex: "dino.png")
+        fotosExtras: [C:\Users\PH\Documents\catalogo-3d\img\Animes\VieJinx\vi1.png], // Se tiver mais fotos, coloque os nomes aqui (ex: ["dino2.png", "dino3.png"])
+        linkWpp: "https://wa.me/5534996896636?text=Olá!+Quero+saber+mais+sobre+o+Quebra-Cabeça+Dino"
     },
     {
         id: 2,
-        nome: "Torre de Empilhar Formas Geométricas",
-        categoria: "educativo",
-        descricao: "4 peças grandes, fáceis de segurar e seguras para crianças.",
-        imagem: "https://via.placeholder.com/300?text=Torre+Formas",
-        linkWpp: "https://wa.me/5534996896636?text=Olá,+tenho+interesse+na+Torre+Formas"
-    },
-    
-    // --- CATEGORIA: ANIME ---
-    {
-        id: 3,
-        nome: "Estatueta Goku Ultra Instinto (18cm)",
+        nome: "Goku Ultra Instinto",
         categoria: "anime",
-        descricao: "Impressão de alta resolução com pintura detalhada.",
-        imagem: "https://via.placeholder.com/300?text=Goku+Ultra",
-        linkWpp: "https://wa.me/5534996896636?text=Olá,+tenho+interesse+na+Estatueta+Goku"
-    },
-    {
-        id: 4,
-        nome: "Chaveiro Emblema Attack on Titan",
-        categoria: "anime",
-        descricao: "Resistente, cores vivas e ótimo acabamento.",
-        imagem: "https://via.placeholder.com/300?text=Chaveiro+AoT",
-        linkWpp: "https://wa.me/5534996896636?text=Olá,+tenho+interesse+no+Chaveiro+AoT"
-    },
-
-    // --- CATEGORIA: RELIGIOSO ---
-    {
-        id: 5,
-        nome: "Imaculada Conceição Estilizada",
-        categoria: "religioso",
-        descricao: "Acabamento efeito gesso, design moderno e minimalista.",
-        imagem: "https://via.placeholder.com/300?text=Nossa+Senhora",
-        linkWpp: "https://wa.me/5534996896636?text=Olá,+tenho+interesse+na+Imaculada"
-    },
-    
-    // --- CATEGORIA: PERSONALIZADO ---
-    {
-        id: 6,
-        nome: "Lembrancinha de Aniversário (Nome + Tema)",
-        categoria: "personalizado",
-        descricao: "Orçamento para kits acima de 10 unidades.",
-        imagem: "https://via.placeholder.com/300?text=Lembrancinha",
-        linkWpp: "https://wa.me/5534996896636?text=Olá,+gostaria+de+um+orçamento+para+lembrancinhas"
+        preco: "89,90",
+        descricao: "Action figure com alto nível de detalhamento impresso na Bambu Lab A1 Mini. Material PLA Premium.",
+        imagem: "logo_r3d.png", 
+        fotosExtras: [],
+        linkWpp: "https://wa.me/5534996896636?text=Olá!+Tenho+interesse+no+Goku+3D"
     }
 ];
 
-// FUNÇÃO PARA INSERIR OS PRODUTOS NA TELA
+// 2. FUNÇÃO PARA RENDERIZAR OS CARDS NA VITRINE
 function renderizarProdutos(lista) {
     const grid = document.getElementById('grid-produtos');
-    const heroTitle = document.querySelector('.section-title');
-    
-    // Limpa a vitrine atual
     grid.innerHTML = '';
     
     if (lista.length === 0) {
@@ -73,45 +34,77 @@ function renderizarProdutos(lista) {
         return;
     }
 
-    // Cria o HTML de cada card
     lista.forEach(p => {
-        const cardHTML = `
-            <div class="card">
+        grid.innerHTML += `
+            <div class="card" onclick="verDetalhes(${p.id})">
                 <div class="card-img-container">
                     <img src="${p.imagem}" alt="${p.nome}" class="card-img">
                 </div>
                 <div class="card-content">
                     <span class="card-cat">${p.categoria}</span>
                     <h3 class="card-title">${p.nome}</h3>
-                    <p class="card-desc">${p.descricao}</p>
-                    <a href="${p.linkWpp}" target="_blank" class="btn-wpp">
-                        <i class="fab fa-whatsapp"></i> Tenho Interesse
-                    </a>
+                    <p class="card-desc">R$ ${p.preco}</p>
+                    <small style="color: #814DF6; font-weight: bold;">Ver detalhes</small>
                 </div>
             </div>
         `;
-        // Insere o card na grid
-        grid.innerHTML += cardHTML;
     });
 }
 
-// FUNÇÃO DE FILTRO
-function filtrar(cat) {
-    const grid = document.getElementById('grid-produtos');
-    const heroSection = document.querySelector('#vitrine');
-    const links = document.querySelectorAll('.nav-links li');
+// 3. FUNÇÃO PARA MOSTRAR A PÁGINA DE DETALHES
+function verDetalhes(id) {
+    const produto = produtos.find(p => p.id === id);
+    
+    // Preenche os textos
+    document.getElementById('detalhe-nome').innerText = produto.nome;
+    document.getElementById('detalhe-cat').innerText = produto.categoria;
+    document.getElementById('detalhe-preco').innerText = produto.preco;
+    document.getElementById('detalhe-desc').innerText = produto.descricao;
+    document.getElementById('foto-principal').src = produto.imagem;
+    document.getElementById('detalhe-link-wpp').href = produto.linkWpp;
 
-    // Atualiza a classe active nos links
+    // Miniaturas
+    const minis = document.getElementById('miniaturas');
+    minis.innerHTML = `<img src="${produto.imagem}" onclick="trocarFoto('${produto.imagem}')" style="width:80px; height:80px; object-fit:cover; border-radius:10px; cursor:pointer;">`;
+    
+    if (produto.fotosExtras && produto.fotosExtras.length > 0) {
+        produto.fotosExtras.forEach(f => {
+            minis.innerHTML += `<img src="${f}" onclick="trocarFoto('${f}')" style="width:80px; height:80px; object-fit:cover; border-radius:10px; cursor:pointer;">`;
+        });
+    }
+
+    // Troca as telas (Esconde vitrine e mostra detalhe)
+    document.getElementById('vitrine').style.display = 'none';
+    document.querySelector('.hero-section').style.display = 'none';
+    document.getElementById('detalhes-produto').style.display = 'block';
+    window.scrollTo(0, 0);
+}
+
+// 4. FUNÇÃO PARA VOLTAR PARA A VITRINE
+function voltarParaVitrine() {
+    document.getElementById('vitrine').style.display = 'block';
+    document.querySelector('.hero-section').style.display = 'block';
+    document.getElementById('detalhes-produto').style.display = 'none';
+}
+
+// 5. FUNÇÃO PARA TROCAR A FOTO PRINCIPAL NA GALERIA
+function trocarFoto(src) {
+    document.getElementById('foto-principal').src = src;
+}
+
+// 6. FUNÇÃO DE FILTRO DE CATEGORIAS
+function filtrar(cat) {
+    // Se estiver na tela de detalhes, volta para a vitrine primeiro
+    voltarParaVitrine();
+
+    const links = document.querySelectorAll('.nav-links li');
     links.forEach(link => {
-        if (link.getAttribute('onclick').includes(`'${cat}'`)) {
+        if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(`'${cat}'`)) {
             link.classList.add('active');
         } else {
             link.classList.remove('active');
         }
     });
-
-    // Rola a tela suavemente para a vitrine
-    heroSection.scrollIntoView({ behavior: 'smooth' });
 
     if(cat === 'todos') {
         renderizarProdutos(produtos);
@@ -121,8 +114,7 @@ function filtrar(cat) {
     }
 }
 
-// INICIALIZAÇÃO
-// Quando a página carregar, renderiza todos os produtos
+// 7. INICIALIZAÇÃO
 document.addEventListener('DOMContentLoaded', () => {
     renderizarProdutos(produtos);
 });
