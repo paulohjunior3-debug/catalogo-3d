@@ -1,67 +1,49 @@
 const produtos = [
-  {
-    nome: "Carrinho Educativo",
-    categoria: "infantil",
-    imagem: "img/1.jpg"
-  },
-  {
-    nome: "Chaveiro Personalizado",
-    categoria: "chaveiro",
-    imagem: "img/2.jpg"
-  },
-  {
-    nome: "Quebra-cabeça Infantil",
-    categoria: "infantil",
-    imagem: "img/3.jpg"
-  }
+    {
+        nome: "Alfabeto Móvel 3D",
+        categoria: "educativo",
+        preco: "45,00",
+        imagem: "https://via.placeholder.com/250", // Troque pelas suas fotos
+        linkWpp: "https://wa.me/5534996896636?text=Tenho+interesse+no+Alfabeto+3D"
+    },
+    {
+        nome: "Action Figure Goku",
+        categoria: "anime",
+        preco: "89,00",
+        imagem: "https://via.placeholder.com/250",
+        linkWpp: "https://wa.me/5534996896636?text=Tenho+interesse+no+Goku"
+    },
+    {
+        nome: "Anjinho da Guarda",
+        categoria: "religioso",
+        preco: "60,00",
+        imagem: "https://via.placeholder.com/250",
+        linkWpp: "https://wa.me/5534996896636?text=Tenho+interesse+no+Anjinho"
+    }
 ];
 
-const grid = document.getElementById("grid");
-const search = document.getElementById("search");
-const categoriasEl = document.getElementById("categorias");
-const slides = document.getElementById("slides");
-
-/* RENDER PRODUTOS */
-function render(lista) {
-  grid.innerHTML = "";
-  lista.forEach(p => {
-    grid.innerHTML += `
-      <div class="produto">
-        <img src="${p.imagem}">
-        <h3>${p.nome}</h3>
-        <a href="https://wa.me/5534996896636?text=Olá, tenho interesse no produto: ${p.nome}" target="_blank">
-          Comprar
-        </a>
-      </div>
-    `;
-  });
+function renderizarProdutos(lista) {
+    const grid = document.getElementById('grid-produtos');
+    grid.innerHTML = lista.map(p => `
+        <div class="card">
+            <img src="${p.imagem}" alt="${p.nome}">
+            <h3>${p.nome}</h3>
+            <p>R$ ${p.preco}</p><br>
+            <a href="${p.linkWpp}" target="_blank" class="btn-wpp">
+                <i class="fab fa-whatsapp"></i> Tenho Interesse
+            </a>
+        </div>
+    `).join('');
 }
-
-render(produtos);
-
-/* BUSCA */
-search.addEventListener("input", () => {
-  const termo = search.value.toLowerCase();
-  const filtrados = produtos.filter(p =>
-    p.nome.toLowerCase().includes(termo) ||
-    p.categoria.toLowerCase().includes(termo)
-  );
-  render(filtrados);
-});
-
-/* CATEGORIAS */
-const categorias = [...new Set(produtos.map(p => p.categoria))];
-
-categorias.forEach(cat => {
-  categoriasEl.innerHTML += `<li onclick="filtrar('${cat}')">${cat}</li>`;
-});
 
 function filtrar(cat) {
-  const filtrados = produtos.filter(p => p.categoria === cat);
-  render(filtrados);
+    if(cat === 'todos') {
+        renderizarProdutos(produtos);
+    } else {
+        const filtrados = produtos.filter(p => p.categoria === cat);
+        renderizarProdutos(filtrados);
+    }
 }
 
-/* BANNER */
-produtos.forEach(p => {
-  slides.innerHTML += `<img src="${p.imagem}">`;
-});
+// Inicializa o site com todos os produtos
+renderizarProdutos(produtos);

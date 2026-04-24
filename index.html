@@ -1,46 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Loja 3D</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realidade 3D | Transformando Sonhos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-<header class="header">
-  <div class="logo">
-  <img src="img/logo.png" alt="Realidade 3D">
-</div>
+    <header>
+        <nav>
+            <div class="logo">Realidade <span>3D</span></div>
+            <ul class="categorias">
+                <li onclick="filtrar('todos')">Todos</li>
+                <li onclick="filtrar('educativo')">Educativos</li>
+                <li onclick="filtrar('anime')">Anime</li>
+                <li onclick="filtrar('religioso')">Religiosos</li>
+            </ul>
+        </nav>
+        <div class="hero">
+            <h1>Brinquedos que Educam, Peças que Encantam.</h1>
+            <p>Impressão 3D de alta precisão para todas as idades.</p>
+            <a href="#produtos" class="btn-hero">Ver Catálogo</a>
+        </div>
+    </header>
 
-  <nav class="menu">
-    <ul>
-      <li class="dropdown">
-        Categorias
-        <ul class="dropdown-menu" id="categorias"></ul>
-      </li>
-      <li>Sobre</li>
-      <li>
-        <a href="https://wa.me/5534996896636" target="_blank">
-          WhatsApp
-        </a>
-      </li>
-    </ul>
-  </nav>
+    <main id="produtos">
+        <h2 class="section-title">Nossas Criações</h2>
+        <div class="grid-produtos" id="grid-produtos">
+            </div>
+    </main>
 
-  <input type="text" id="search" placeholder="Buscar produtos...">
-</header>
+    <footer>
+        <p>&copy; 2024 Realidade 3D - Impressão com Amor</p>
+    </footer>
 
-<a href="#infantil" class="hero">
-  <img src="img/banner.png" alt="Produtos infantis">
-</a>
-<a href="#infantil" class="hero"></a>
-
-<h2 id="infantil">Produtos Infantis</h2>
-
-<section class="produtos">
-  <div class="grid" id="grid"></div>
-</section>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
