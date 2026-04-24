@@ -3,37 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Realidade 3D | Transformando Sonhos</title>
+    <title>Realidade 3D | Produtos Educativos, Anime e Religiosos</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header>
-        <nav>
-            <div class="logo">Realidade <span>3D</span></div>
-            <ul class="categorias">
-                <li onclick="filtrar('todos')">Todos</li>
+        <nav class="main-nav">
+            <div class="logo-container">
+                <img src="logo_r3d.png" alt="Realidade 3D - Logo Completo" class="logo-image">
+            </div>
+            <ul class="nav-links">
+                <li class="active" onclick="filtrar('todos')">Início</li>
                 <li onclick="filtrar('educativo')">Educativos</li>
                 <li onclick="filtrar('anime')">Anime</li>
                 <li onclick="filtrar('religioso')">Religiosos</li>
+                <li onclick="filtrar('personalizado')">Lembrancinhas</li>
             </ul>
         </nav>
-        <div class="hero">
-            <h1>Brinquedos que Educam, Peças que Encantam.</h1>
-            <p>Impressão 3D de alta precisão para todas as idades.</p>
-            <a href="#produtos" class="btn-hero">Ver Catálogo</a>
+
+        <div class="hero-section">
+            <h1 class="hero-title">Criando Sorrisos com Impressão 3D</h1>
+            <p class="hero-subtitle">Produtos educativos, figuras colecionáveis e personalizados exclusivos.</p>
+            <a href="#vitrine" class="btn-hero">Ver Catálogo</a>
         </div>
     </header>
 
-    <main id="produtos">
-        <h2 class="section-title">Nossas Criações</h2>
+    <main class="container" id="vitrine">
+        <h2 class="section-title">Confira Nossos Destaques</h2>
+        
         <div class="grid-produtos" id="grid-produtos">
-            </div>
+            <div class="loading">Carregando produtos...</div>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2024 Realidade 3D - Impressão com Amor</p>
+        <div class="footer-content container">
+            <div class="footer-logo">
+                <img src="logo_r3d.png" alt="Logo R3D Footer" class="footer-logo-img">
+            </div>
+            <p>&copy; 2024 Realidade 3D. Criado com tecnologia.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
     </footer>
 
     <script src="script.js"></script>

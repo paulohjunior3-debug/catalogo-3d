@@ -1,64 +1,296 @@
+/* style.css */
+
+/* Definição de Variáveis (Cores e Fontes) */
 :root {
-    --primary: #FF6B6B; /* Rosa/Vermelho vibrante */
-    --secondary: #4ECDC4; /* Turquesa */
-    --dark: #2F2E41;
-    --light: #F7FFF7;
+    /* Cores principais baseadas no seu logo */
+    --p-purple: #814DF6;       /* Roxo vibrante */
+    --p-black: #101010;        /* Preto quase puro */
+    --p-gradient: linear-gradient(135deg, #a77eff, #814DF6); /* Gradiente Roxo */
+    
+    /* Cores de fundo e texto */
+    --bg-light: #FBFBFF;
+    --card-bg: #FFFFFF;
+    --text-dark: #333333;
+    --text-light: #F0F0F0;
+    
+    /* Efeitos */
+    --shadow: 0 10px 30px rgba(129, 77, 246, 0.08); /* Sombra roxa suave */
+    --radius: 15px;
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-body { background-color: var(--light); color: var(--dark); scroll-behavior: smooth; }
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
 
+/* Container padrão */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* NAV - Cabeçalho Principal */
 header {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-    padding: 2rem 5%;
-    text-align: center;
+    background: var(--bg-light); /* Fundo claro para o logo se destacar */
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(0,0,0,0.03);
 }
 
-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; }
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+    margin-bottom: 2rem;
+}
 
-.logo { font-size: 1.8rem; font-weight: bold; text-transform: uppercase; }
-.logo span { color: var(--dark); }
+/* Container do Logo */
+.logo-container {
+    flex-shrink: 0;
+    transition: transform 0.3s var(--ease);
+}
 
-.categorias { list-style: none; display: flex; gap: 20px; }
-.categorias li { cursor: pointer; font-weight: 500; transition: 0.3s; }
-.categorias li:hover { opacity: 0.7; }
+.logo-container:hover {
+    transform: scale(1.03);
+}
 
-.hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+.logo-image {
+    height: 100px; /* Altura ajustada para o logo completo */
+    width: auto;
+    display: block;
+}
+
+/* Links de Navegação */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    background: #EFEFFF;
+    padding: 10px 25px;
+    border-radius: 50px;
+}
+
+.nav-links li {
+    font-weight: 500;
+    color: var(--text-dark);
+    cursor: pointer;
+    position: relative;
+    padding: 5px 10px;
+    transition: color 0.3s var(--ease);
+}
+
+.nav-links li.active {
+    color: var(--p-purple);
+}
+
+.nav-links li:not(.active):hover {
+    color: var(--p-purple);
+}
+
+/* HERO SECTION - Título Principal */
+.hero-section {
+    text-align: center;
+    padding: 60px 5%;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--p-black);
+    margin-bottom: 15px;
+    letter-spacing: -1px;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto 35px auto;
+    font-weight: 400;
+}
+
+.btn-hero {
+    display: inline-block;
+    background: var(--p-gradient); /* Botão chamativo com gradiente roxo */
+    color: white;
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    box-shadow: 0 10px 20px rgba(129, 77, 246, 0.2);
+    transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.btn-hero:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(129, 77, 246, 0.3);
+}
+
+/* VITRINE DE PRODUTOS */
+#vitrine {
+    padding-top: 50px;
+    padding-bottom: 80px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--p-black);
+    margin-bottom: 50px;
+}
 
 .grid-produtos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 30px;
-    padding: 50px 5%;
 }
 
+/* CARD DE PRODUTO */
 .card {
-    background: white;
-    border-radius: 15px;
+    background: var(--card-bg);
+    border-radius: var(--radius);
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-    text-align: center;
-    padding-bottom: 20px;
+    box-shadow: var(--shadow);
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    display: flex;
+    flex-direction: column;
 }
 
-.card:hover { transform: translateY(-10px); }
+.card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 40px rgba(129, 77, 246, 0.15);
+}
 
-.card img { width: 100%; height: 200px; object-fit: cover; }
+.card-img-container {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
 
-.card h3 { margin: 15px 0; color: var(--dark); }
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s var(--ease);
+}
 
+.card:hover .card-img {
+    transform: scale(1.08);
+}
+
+.card-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-cat {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--p-purple);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--p-black);
+    margin: 5px 0 15px 0;
+}
+
+/* Botão WhatsApp */
 .btn-wpp {
-    display: inline-block;
-    background-color: #25D366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #25D366; /* Verde Oficial do WhatsApp */
     color: white;
-    padding: 10px 20px;
+    padding: 12px 20px;
     text-decoration: none;
-    border-radius: 50px;
-    font-weight: bold;
-    transition: 0.3s;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-top: auto; /* Cola o botão no fundo do card */
+    transition: background-color 0.3s;
 }
 
-.btn-wpp:hover { background-color: #128C7E; }
+.btn-wpp i {
+    font-size: 1.2rem;
+}
+
+.btn-wpp:hover {
+    background-color: #1aae50;
+}
+
+/* FOOTER */
+footer {
+    background: var(--p-black);
+    color: var(--text-light);
+    padding: 50px 0;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-logo-img {
+    height: 60px;
+    width: auto;
+}
+
+.social-icons a {
+    color: var(--text-light);
+    font-size: 1.5rem;
+    margin-left: 15px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--p-purple);
+}
+
+/* Media Queries para Mobile (Chamarativo em celulares) */
+@media (max-width: 768px) {
+    .main-nav {
+        flex-direction: column;
+        padding-top: 20px;
+    }
+    
+    .logo-image {
+        height: 80px;
+        margin-bottom: 20px;
+    }
+    
+    .nav-links {
+        width: 100%;
+        overflow-x: auto; /* Scroll horizontal se os links não couberem */
+        justify-content: center;
+        border-radius: 10px;
+    }
+    
+    .hero-title {
+        font-size: 2.2rem;
+    }
+}
